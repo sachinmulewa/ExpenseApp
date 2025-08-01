@@ -31,6 +31,7 @@ with st.form("expense_form"):
     home_expenses = st.text_input("Enter Home Expenses (comma-separated)", "")
     travel_expenses = st.text_input("Enter Travel Expenses (comma-separated)", "")
     food_expenses = st.text_input("Enter Food Expenses (comma-separated)", "")
+    file_name = st.text_input("Enter the file name:", "expenses.xlsx")
     submitted = st.form_submit_button("Generate Excel")
 
 if submitted:
@@ -46,7 +47,7 @@ if submitted:
     st.download_button(
         label="Download Excel File",
         data=excel_file,
-        file_name="expenses.xlsx",
+        file_name=f"{file_name}.xlsx" if not file_name.endswith(".xlsx") else file_name,
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
